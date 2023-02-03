@@ -1,6 +1,13 @@
+<style>
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+</style>
 <form action="action_page.php">
   <div class="container">
-    <h1>New user Register for DevOps Learning</h1>
+    <h1>Welcome to a simple DevOps project.</h1>
     <p>Please fill in this form to create an account.</p>
     <hr>
      
