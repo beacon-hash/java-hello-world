@@ -18,9 +18,8 @@
         password: "{{ dockerhub_password }}"
     - name: 
       debug:
-        var: 
-          - build_number
-          - workspace
+        var: workspace
+
     # - name: Build docker image
     #   community.docker.docker_image:
     #     name: "java_hello_world:{{ build_number }}"
