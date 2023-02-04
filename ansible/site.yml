@@ -24,6 +24,7 @@
         source: build
         state: present
         push: true
-        repository: kerracan/java-hello-world:latest
+        repository: kerracan/java-hello-world
         tag: latest
+        force_tag: true
         
