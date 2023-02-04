@@ -1,0 +1,20 @@
+---
+- name: Build docker image from java artifact
+  hosts: localhost 
+  tasks:
+    - name: confirming docker module for python
+      ansible.builtin.pip:
+        name: docker 
+        state: latest
+      become: True
+    - name: Login to dockerhub
+      community.docker.docker_login:
+        username: "{{ dockerhub_username }}"
+        password: "{{ dockerhub_password }}"
+    - name: Build docker image
+      community.docker.docker_image:
+        name: java_hello_world
+        tag: "'v' + {{ build_number }}"
+        build:
+          path: "{{ (workspace, 'Dockerfile') | path_join }}"
+        

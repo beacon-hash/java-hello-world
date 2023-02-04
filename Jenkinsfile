@@ -14,9 +14,11 @@ pipeline {
                 sh 'mvn clean install'
             }
         }
-        stage ('Deploy') {
+        stage ('Pre-deploy') {
             steps {
-                deploy adapters: [tomcat8(credentialsId: 'tomcat-credentials', path: '', url: 'http://tomcat:8080/')], war: '**/*.war'
+                withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'password', usernameVariable: 'username')]) {
+                    sh 'cd ansible && ansible-playbook --extra-vars "dockerhub_username=$username dockerhub_password=$password workspace=$WORKSPACE" site.yml'
+                }
             }
         }
     }
