@@ -19,7 +19,7 @@ pipeline {
         stage ('Pre-deploy') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'password', usernameVariable: 'username')]) {
-                    sh 'ANSIBLE_CONFIG=ansible/ansible.cfg ansible-playbook --extra-vars "dockerhub_username=$username dockerhub_password=$password workspace=$WORKSPACE build_number=$BUILD_ID" ansible/site.yml -vvv'
+                    sh 'ANSIBLE_CONFIG=ansible/ansible.cfg ansible-playbook --extra-vars "dockerhub_username=$username dockerhub_password=$password workspace=$WORKSPACE build_number=$BUILD_ID" ansible/site.yml'
                 }
             }
         }
