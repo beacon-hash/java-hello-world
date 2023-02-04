@@ -33,4 +33,5 @@
           - "9090:8080"
         pull: True
         state: present
+        detach: true
                 
