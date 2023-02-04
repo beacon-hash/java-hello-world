@@ -18,13 +18,11 @@
         password: "{{ dockerhub_password }}"
     - name: Build docker image
       community.docker.docker_image:
-        name: "java-hello-world:v{{ build_number }}"
+        name: "kerracan/java-hello-world"
         build:
           path: "{{ workspace }}"
         source: build
         state: present
         push: true
-        repository: kerracan/java-hello-world
-        tag: latest
-        force_tag: true
+        tag: "v{{ build_number }}"
         
