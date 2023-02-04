@@ -21,6 +21,6 @@
         name: java_hello_world
         tag: "v{{ build_number }}"
         build:
-          path: "{{ (workspace, 'Dockerfile') | path_join }}"
+          path: "{{ workspace }}"
         source: build
         
