@@ -32,6 +32,6 @@
         ports:
           - "9090:8080"
         pull: True
-        state: present
+        state: started
         detach: true
                 
