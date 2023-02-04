@@ -23,6 +23,7 @@
           path: "{{ workspace }}"
         source: build
         state: present
-        push: true 
+        push: true
         repository: kerracan/java-hello-world
+        tag: latest
         
