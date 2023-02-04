@@ -25,4 +25,12 @@
         state: present
         push: true
         tag: "v{{ build_number }}"
-        
+    - name: Deploy the webapp
+      community.docker.docker_container:
+        name: hello-world-webapp
+        image: "kerracan/java-hello-world:v{{ build_number }}"
+        ports:
+          - "9090:8080"
+        pull: True
+        state: present
+                
