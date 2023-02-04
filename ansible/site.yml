@@ -18,9 +18,9 @@
         password: "{{ dockerhub_password }}"
     - name: Build docker image
       community.docker.docker_image:
-        name: java_hello_world
-        tag: "v{{ build_number }}"
+        name: "java_hello_world:{{ build_number }}"
         build:
           path: "{{ workspace }}"
         source: build
+        state: present
         
