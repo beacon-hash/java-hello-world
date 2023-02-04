@@ -16,11 +16,16 @@
       community.docker.docker_login:
         username: "{{ dockerhub_username }}"
         password: "{{ dockerhub_password }}"
-    - name: Build docker image
-      community.docker.docker_image:
-        name: "java_hello_world:{{ build_number }}"
-        build:
-          path: "{{ workspace }}"
-        source: build
-        state: present
+    - name: 
+      debug:
+        var: 
+          - build_number
+          - workspace
+    # - name: Build docker image
+    #   community.docker.docker_image:
+    #     name: "java_hello_world:{{ build_number }}"
+    #     build:
+    #       path: "{{ workspace }}"
+    #     source: build
+    #     state: present
         
