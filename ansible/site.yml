@@ -2,6 +2,11 @@
 - name: Build docker image from java artifact
   hosts: localhost 
   tasks:
+    - name: confirm that python package manager is installed
+      ansible.builtin.apt:
+        name: pip
+        state: latest 
+        update_cache: true
     - name: confirming docker module for python
       ansible.builtin.pip:
         name: docker 
