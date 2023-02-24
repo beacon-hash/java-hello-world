@@ -1,0 +1,37 @@
+version: '3.7'
+volumes:
+  jenkins_home:
+    external: true
+  sonarqube_data:
+    external: true
+  sonarqube_extensions:
+    external: true
+services:
+  jenkins:
+    image: jenkins:latest
+    volumes:
+      - jenkins_home:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - 8080:8080
+      - 50000:50000
+    hostname: jenkins
+    container_name: jenkins
+  sonarqube:
+    image: sonarqube:latest 
+    volumes:
+      - sonarqube_data:/opt/sonarqube/data
+      - sonarqube_extensions:/opt/sonarqube/extensions
+    ports:
+      - 9000:9000
+    hostname: sonarqube 
+    container_name: sonarqube
+  nexus:
+    image: sonatype/nexus3:latest
+    ports:
+      - 8081:8081
+      - 8082:8082
+      - 8083:8083
+      - 8084:8084
+    hostname: nexus 
+    container_name: nexus
