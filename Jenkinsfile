@@ -1,26 +1,19 @@
 pipeline {
     agent {
-        label 'ansible'
-    }
-    tools {
-        maven 'maven-3.8.7'
+        docker {
+            image 'maven:3.9.0-eclipse-temurin-17'
+            args '-v /root/.m2:/root/.m2'
+        }
     }
     stages {
-        stage ('Preparation') {
+        stage('Preparation') {
             steps {
-                git "https://github.com/beacon-hash/java-hello-world.git"
+                git 'https://github.com/beacon-hash/java-hello-world.git'
             }
         }
-        stage ('Build') {
+        stage('Test') {
             steps {
-                sh 'mvn clean install'
-            }
-        }
-        stage ('Pre-deploy') {
-            steps {
-                withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'password', usernameVariable: 'username')]) {
-                    sh 'ANSIBLE_CONFIG=ansible/ansible.cfg ansible-playbook --extra-vars "dockerhub_username=$username dockerhub_password=$password workspace=$WORKSPACE build_number=$BUILD_ID" ansible/site.yml'
-                }
+                sh 'ls -l *'
             }
         }
     }
