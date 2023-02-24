@@ -26,5 +26,10 @@ pipeline {
                 sh 'mvn verify -DskipUnitTests'
             }
         }
+        stage('Build') {
+            steps {
+                sh 'mvn -Dserver.port=7070 clean install'
+            }
+        }
     }
 }
