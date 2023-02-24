@@ -13,8 +13,14 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh 'ls -l *'
+                sh 'mvn test'
+                sh 'ls -lR *'
             }
+            // post {
+            //     always {
+            //         junit 'target'
+            //     }
+            // }
         }
     }
 }
