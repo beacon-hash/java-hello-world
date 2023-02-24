@@ -31,5 +31,12 @@ pipeline {
                 sh 'mvn -Dserver.port=7070 clean install'
             }
         }
+        stage('Static Code Analysis') {
+            steps {
+                withSonarQubeEnv(credentialsId: 'sonarqube-token') {
+                    sh 'mvn soanr:sonar clean package'
+                }
+            }
+        }
     }
 }
