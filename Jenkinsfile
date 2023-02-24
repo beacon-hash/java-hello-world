@@ -11,15 +11,19 @@ pipeline {
                 git 'https://github.com/beacon-hash/java-hello-world.git'
             }
         }
-        stage('Test') {
+        stage('Unit Test') {
             steps {
                 sh 'mvn test'
-                sh 'ls -lR *'
             }
             post {
                 always {
                     junit 'server/target/surefire-reports/*.xml'
                 }
+            }
+        }
+        stage('Integration Test') {
+            steps {
+                sh 'mvn verify -DskipUnitTests'
             }
         }
     }
